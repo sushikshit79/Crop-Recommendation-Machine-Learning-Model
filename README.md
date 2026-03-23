@@ -239,7 +239,7 @@ Since both Decision Tree and Random Forest demonstrated strong and comparable pe
 
 #### Overall Conclusion – Decision Tree vs Random Forest
 * The Decision Tree model produces highly confident but rigid predictions, often assigning extreme probabilities (0 or 1), which leads to limited diversity in recommendations beyond the top rank.
-* In contrast, the Random Forest model generates more balanced probability distributions, resulting in more meaningful and diverse Top-3 crop recommendations.
+* In contrast, the Random Forest model generates more balanced probability distributions, resulting in more meaningful and diverse top 3 crop recommendations.
 * Across multiple locations, both models generally agree on the top-ranked crop, indicating consistency in identifying dominant regional crops.
 * Random Forest provides better differentiation in lower-ranked predictions, capturing alternative crop options that the Decision Tree fails to represent.
 
