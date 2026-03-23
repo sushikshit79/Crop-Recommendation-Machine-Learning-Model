@@ -3,7 +3,7 @@
 ## Project Title
 Crop Recommendation - Machine Learning Model
 
-**Author**
+**Author:**
 Sushikshit Billa
 
 ### Executive summary
