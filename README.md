@@ -311,9 +311,7 @@ The final system enables users to input a state and county and receive ranked cr
 
 ### Outline of project
 
-
-- **Link to Jupyter Notebook:** [(https://github.com/sushikshit79/CropRecommendationEDA/blob/main/crop_prediction_eda.ipynb)](https://github.com/sushikshit79/CropRecommendationEDA/blob/main/crop_prediction_eda.ipynb)
-
+- **Link to Jupyter Notebook:** [([https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/crop_recommendation.ipynb](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/crop_recommendation.ipynb))
 
 #### Contact and Further Information
 For questions, feedback or additional information regarding this project, please contact:
