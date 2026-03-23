@@ -267,7 +267,7 @@ After evaluating multiple models across different feature engineering strategies
     * Top 3 recommended crops
     * Associated probability scores
 
-**Example**
+#### **Example**
 Below with sample code and results
 
 state = "TENNESSEE"
