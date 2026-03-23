@@ -146,7 +146,7 @@ In this project, hyperparameter tuning was performed using GridSearchCV with cro
 * Decision Tree classifier also maintains very low training and prediction times, making it both accurate and computationally efficient compared to other models.
 * Random Forest shows strong performance as well, with high accuracy (~0.83) and a strong ROC AUC score, indicating good class discrimination capability.
 * Logistic Regression demonstrates balanced performance, with good ROC AUC and moderate improvements in accuracy after feature engineering.
-* SVC accuracy aas increased measurably still showing moderate performance with reasonable precision, higher training and prediction times as compared to other models.
+* SVC accuracy has increased measurably still showing moderate performance with reasonable precision, higher training and prediction times as compared to other models.
 * K-Nearest Neighbors accuracy has increased but remains the weakest performer, with lower accuracy and significantly higher prediction time.
 
 ### Modeling with Hyperparameters Hyperparameters and Feature Engineering 2 (FE2)
