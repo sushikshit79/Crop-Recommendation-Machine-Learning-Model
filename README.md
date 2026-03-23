@@ -32,5 +32,20 @@ The project follows the CRISP-DM (Cross-Industry Standard Process for Data Minin
 The primary data source for this project is an agricultural production dataset containing state- and county-level crop information, including irrigated and non-irrigated acreage and yield. The data is obtained from the USDA (United States Department of Agriculture) QuickStats database and is downloaded as a CSV report from https://quickstats.nass.usda.gov/. This dataset serves as the core data source for model training and evaluation.
 
 ### Data Sources
-Data Analysis and preparation was done as part capstone submission as part of modulke 20 Below is the location of business understanding and data preparation
+Data analysis and preparation were conducted as part of the capstone submission for Module 20.
+Location to business understanding and data preparation
 ![https://github.com/sushikshit79/CropRecommendationEDA/edit/main/README.md]
+
+
+### Outline of project
+
+
+- **Link to Jupyter Notebook:** [(https://github.com/sushikshit79/CropRecommendationEDA/blob/main/crop_prediction_eda.ipynb)](https://github.com/sushikshit79/CropRecommendationEDA/blob/main/crop_prediction_eda.ipynb)
+
+
+#### Contact and Further Information
+For questions, feedback or additional information regarding this project, please contact:
+
+**Sushikshit Billa**\
+Email:sushikshit@gmail.com\
+LinkedIn: linkedin.com/in/sushikshit-billa
