@@ -149,7 +149,7 @@ In this project, hyperparameter tuning was performed using GridSearchCV with cro
 * SVC accuracy has increased measurably still showing moderate performance with reasonable precision, higher training and prediction times as compared to other models.
 * K-Nearest Neighbors accuracy has increased but remains the weakest performer, with lower accuracy and significantly higher prediction time.
 
-### Modeling with Hyperparameters Hyperparameters and Feature Engineering 2 (FE2)
+### Modeling with Hyperparameters and Feature Engineering 2 (FE2)
 
 Feature Engineering 2 (FE2) introduced additional features to better capture geographic specificity and temporal trends in the agricultural data. These transformations help the model learn regional crop patterns and long-term agricultural changes more effectively. The following features were created to evaluate whether these transformations improve model accuracy and other evaluation metrics.
 
