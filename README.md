@@ -179,6 +179,23 @@ Feature Engineering 2 (FE2) introduced additional features to better capture geo
 * Geographic features State and County alone are insufficient to capture crop suitability, as they do not include critical factors like yield into the mix.
 * Overall, HP_FE3 demonstrates the trade-off between real-world applicability and model accuracy, emphasizing the need for richer feature sets to improve prediction quality.
 
+## Visulization of Evaluation Metrics
+
+### Accuracy Comparison Across Models
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/accuracy_comparison_across_models.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/accuracy_comparison_across_models.jpg)
+
+### F1 Score Comparison Across Models
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/f1_comparison_across_models.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/f1_comparison_across_models.jpg)
+
+### ROC AUC Comparison Across Models
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/roc_auc_comparison_across_models.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/roc_auc_comparison_across_models.jpg)
+
+### Performance Comparison Across Models
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/perf_comparison_across_models.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/perf_comparison_across_models.jpg)
+
+### Model Performance Progression Across Modeling Stages
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/mdel_perf_stages.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/mdel_perf_stages.jpg)
+
 ### Outline of project
 
 
