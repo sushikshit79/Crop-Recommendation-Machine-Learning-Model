@@ -90,6 +90,94 @@ The stratified DummyClassifier achieved an accuracy of 11.8% with macro F1 of 0.
    * Precision indicates that more than half of predicted positives are correct.
    * Recall demonstrates moderate ability to capture actual positives, suggesting potential improvement through threshold tuning.
    * The macro ROC AUC of 0.98 indicates strong class separability and ranking capability.
+ 
+### Next steps
+
+* **Evaluate Multiple Classification Models:** Train and compare several classification algorithms like Logistic Regression, K-Nearest Neighbors (KNN), Decision Tree, Random Forest and Support Vector Classifier (SVC). These models will help determine which algorithm best captures patterns in the agricultural dataset and produces reliable predictions.
+* **Hyperparameter Tuning:** For each model will be evaluated by multiple hyperparameter configurations to optimize performance. Parameters such as the number of neighbors in KNN, tree depth in Decision Trees, number of estimators in Random Forest, and kernel parameters in SVC will be tested for best performing model configuration.
+* **Feature Evaluation and Selection:** Analyze the contribution of each feature used in the model, including State, Agricultural District, County, Year, geographic codes, and standardized yield. Features will be evaluated to determine their impact on prediction accuracy and ranking performance.
+* **Feature Reduction:** Identify features that can be removed without significantly affecting model performance. Eliminating non-informative features can reduce model complexity, improve interpretability, and potentially enhance model generalization.
+* **Model Comparison and Selection:** Compare the performance of all trained models using consistent evaluation metrics such as accuracy, precision, recall, F1 score, ROC-AUC, and ranking performance.
+* * **Ranking-Based Evaluation:** Since the objective of the project is to recommend suitable crops, the models will be evaluated not only on standard classification metrics but also on their ability to correctly rank crop predictions. Metrics such as Top-k accuracy for Top-3 recommendations will be used to measure top predicted options.
+ 
+
+### **Evaluate Multiple Classification Models with Default Behavior**
+
+To Evaluate the effectiveness of different classification approaches for crop prediction, five machine learning models were trained and tested: Logistic Regression, K-Nearest Neighbors (KNN), Decision Tree, Support Vector Classifier (SVC) and Random Forest Classifier. Each model was evaluated using metrics such as accuracy, precision, recall, F1 score, ROC AUC, training time and prediction time. This step establishes a baseline to understand how each model performs before applying hyperparameter tuning or feature engineering. 
+
+**Evaluate Metrics of Multiple Classification Models with Default Behavior** 
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_param_def_metrics.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_param_def_metrics.jpg)
+
+### Observations with default parameters
+* Decision Tree classifier shows the best overall performance under default parameters, achieving the highest accuracy and F1 score among the evaluated models.It also has very fast training and prediction times, making it both accurate and computationally efficient for this task.
+* Logistic Regression and Random Forest exhibit the highest ROC AUC scores, indicating strong capability in distinguishing between crop classes.
+* K-Nearest Neighbors performs the weakest, with lower accuracy and significantly higher prediction time due to its distance-based computation.
+
+Overall, Decision Tree provides the best balance of predictive performance and efficiency among the models when using default settings.
+
+### **Evaluate Multiple Classification Models with Hyperparameter Tuning:**
+Hyperparameter tuning is used to improve the performance of machine learning models by identifying the optimal configuration of model parameters that control how the algorithm learns from the data. Hyperparameters are set before training and influence aspects such as model complexity, regularization, and decision boundaries. Evaluating multiple hyperparameter combinations helps ensure that the model captures meaningful patterns in the dataset while avoiding underfitting or overfitting.
+
+In this project, hyperparameter tuning was performed using GridSearchCV with cross-validation to systematically test multiple parameter combinations across different classification models.
+
+**Evaluate Metrics of Multiple Classification Models with Hyperparameter Tuning:**
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_param_hp_metrics.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_param_hp_metrics.jpg)
+
+### Hyperparameter Tuning observations:
+* The Decision Tree classifier continues to show the strongest overall performance after hyperparameter tuning, achieving the highest accuracy and F1 score among the evaluated models.
+* The ROC AUC score of the Decision Tree classifier is also comparable to the strong ROC AUC performance of Logistic Regression and Random Forest classifiers, indicating good class separation capability.
+* SVC demonstrates moderate performance, while K-Nearest Neighbors remains the weakest performer among the evaluated models.
+
+## Engineering features
+
+### Modeling with Hyperparameters and Feature Engineering 1 (HP_FE1)
+* **Ag District**: This feature was removed because agricultural districts are aggregations of counties and therefore do not provide additional information beyond the county-level geographic feature already present in the dataset. Removing it reduces redundancy while preserving relevant geographic information.
+
+* **State ANSI and County ANSI**: These numerical identifiers were removed because the same geographic information is already represented through the categorical State and County features. Keeping both forms would introduce redundant information without improving model learning.
+
+* **std_yield**: This feature was removed because yield values are typically known only after crop production and may introduce potential data leakage when predicting crop suitability. The aggregated historical yield features were created instead to represent long-term productivity patterns without relying on outcome-based information.
+    * **state_crop_avg_yield:** Historical average crop yield at the state level used to capture long-term regional productivity patterns and reduce yearly fluctuations.
+    * **county_crop_avg_yield:** Historical average crop yield at the county level used to capture localized agricultural productivity and improve learning of crop suitability at a finer geographic level.
+
+**Evaluate Metrics of Multiple Classification Models with Hyperparameters and Feature Engineering 1 (HP_FE1):**
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_hp_fe1_metrics.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_hp_fe1_metrics.jpg)
+
+### Observations on models with Hyperparameters and Feature Engineering 1 (HP_FE1)
+* Decision Tree classifier achieves the best overall performance, achieving the highest accuracy(0.887), precision(0,872), recall(0.887), F1(0.865) and ROC AUC(0.993) score among all evaluated models, indicating strong predictive capability and good class separation capability.
+* Decision Tree classifier also maintains very low training and prediction times, making it both accurate and computationally efficient compared to other models.
+* Random Forest shows strong performance as well, with high accuracy (~0.83) and a strong ROC AUC score, indicating good class discrimination capability.
+* Logistic Regression demonstrates balanced performance, with good ROC AUC and moderate improvements in accuracy after feature engineering.
+* SVC accuracy aas increased measurably still showing moderate performance with reasonable precision, higher training and prediction times as compared to other models.
+* K-Nearest Neighbors accuracy has increased but remains the weakest performer, with lower accuracy and significantly higher prediction time.
+
+### Modeling with Hyperparameters Hyperparameters and Feature Engineering 2 (FE2)
+
+Feature Engineering 2 (FE2) introduced additional features to better capture geographic specificity and temporal trends in the agricultural data. These transformations help the model learn regional crop patterns and long-term agricultural changes more effectively. The following features were created to evaluate whether these transformations improve model accuracy and other evaluation metrics.
+
+* **state_county:** A combined geographic feature created by concatenating State and County to represent a unique location identifier, enabling the model to learn more precise regional crop suitability patterns.
+* **years_from_start:** A temporal feature derived from the Year variable representing the number of years since the earliest observation in the dataset, allowing the model to capture long-term agricultural trends without relying on raw year values.
+
+**Evaluate Metrics of Multiple Classification Models with Hyperparameters and Feature Engineering 2 (HP_FE2):**
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_hp_fe2_metrics.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_hp_fe2_metrics.jpg)
+
+### Observations on models with Hyperparameters and Feature Engineering 2 (HP_FE2)
+**Feature Engneering 2(HP_FE2)** transformations generated almost comparable results to **Feature Engineering 1 (HP_FE2)** transformations, but the metrics decreased negligeably.
+* Decision Tree classifier still continues to deliver the strongest overall performance, achieving the highest accuracy, precision, recall, F1 and ROC AUC score among all evaluated models.
+* Random Forest classifier shows the second-best performance, with strong accuracy and balanced precision–recall values, along with a high ROC AUC score.
+* Logistic Regression maintains stable performance, with competitive ROC AUC while maintaining moderate accuracy and F1 score.
+* K-Nearest Neighbors remains the weakest performer, with significantly lower accuracy, precision, recall, and F1 score.
+
+### Modeling with Hyperparameters and Feature Engineering 3 (HP_FE3)
+* In this setup, the model uses State and County as the only input features to predict the most suitable crop. These features are treated as categorical variables and encoded using one-hot encoding to enable their use in machine learning models.
+* This approach removes all engineered and yield-based features to eliminate data leakage and ensure that the model relies solely on information that would realistically be available to farmers and stakeholders.
+
+**Evaluate Metrics of Multiple Classification Models with Hyperparameters and Feature Engineering 3 (HP_FE3):**
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_hp_fe3_metrics.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_hp_fe3_metrics.jpg)
+
+### Observations on models with Hyperparameters and Feature Engineering 1 (HP_FE3)
+* Model performance is significantly lower compared to FE1, with accuracy ranging roughly between 19%–28%, indicating limited predictive capability.
+* Geographic features State and County alone are insufficient to capture crop suitability, as they do not include critical factors like yield into the mix.
+* Overall, HP_FE3 demonstrates the trade-off between real-world applicability and model accuracy, emphasizing the need for richer feature sets to improve prediction quality.
 
 ### Outline of project
 
