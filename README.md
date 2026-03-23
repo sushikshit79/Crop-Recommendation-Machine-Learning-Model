@@ -235,7 +235,7 @@ Based on the comparative evaluation across all models and experiments, both the 
 Since both Decision Tree and Random Forest demonstrated strong and comparable performance across evaluation metrics, it is important to assess their behavior in real-world scenarios. Running sample-based predictions allows us to evaluate how each model performs in practical use, particularly in terms of recommendation quality and probability distribution. These results can then be used to select the most suitable model for deployment.
 
 **Comparison of Predictions - Decision Tree vs Random Forest**
-![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/Best_Model_Pred_Comp.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/Best_Model_Pred_Comp.jpg)
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/Model_Pred_Comp.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/Model_Pred_Comp.jpg)
 
 #### Overall Conclusion – Decision Tree vs Random Forest
 * The Decision Tree model produces highly confident but rigid predictions, often assigning extreme probabilities (0 or 1), which leads to limited diversity in recommendations beyond the top rank.
