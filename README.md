@@ -270,6 +270,7 @@ After evaluating multiple models across different feature engineering strategies
 #### **Example**
 Below with sample code and results
 
+```python
 state = "TENNESSEE"
 county = "LINCOLN"
 preds = predict_top3_from_location(best_rf_model, state, county)
@@ -280,8 +281,9 @@ preds_disp = preds_df.style.set_table_styles([
     {'selector': 'th', 'props': [('border', '1px solid black')]}
 ])
 preds_disp
+```
 
-![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/sam_op.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/sam_op.jpg)
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/op_pred.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/op_pred.jpg)
 
 #### Deployment Approach:
 * **The model can be deployed using the following approaches**
