@@ -33,8 +33,7 @@ The primary data source for this project is an agricultural production dataset c
 
 ### Data Analysis and Preparation
 Data analysis and preparation were conducted as part of the capstone submission for Module 20.
-Location to business understanding and data preparation
-![https://github.com/sushikshit79/CropRecommendationEDA/edit/main/README.md]
+Location to business understanding and data preparation can be found at this ![location](https://github.com/sushikshit79/CropRecommendationEDA/edit/main/README.md)
 
 #### Feature Engineering
 The dataset contains both categorical and numeric attributes representing geographic, administrative, and yield related information. To prepare the data for modeling, features were grouped into categorical and numerical variables based on their characteristics.
