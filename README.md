@@ -28,14 +28,68 @@ The project focuses on developing and evaluating machine learning models—inclu
 
 The project follows the CRISP-DM (Cross-Industry Standard Process for Data Mining) framework to ensure a structured and iterative approach, covering business understanding, data preparation, modeling, evaluation, and deployment.
 
-### Data Analysis and Preparation
+### Data Sources
 The primary data source for this project is an agricultural production dataset containing state- and county-level crop information, including irrigated and non-irrigated acreage and yield. The data is obtained from the USDA (United States Department of Agriculture) QuickStats database and is downloaded as a CSV report from https://quickstats.nass.usda.gov/. This dataset serves as the core data source for model training and evaluation.
 
-### Data Sources
+### Data Analysis and Preparation
 Data analysis and preparation were conducted as part of the capstone submission for Module 20.
 Location to business understanding and data preparation
 ![https://github.com/sushikshit79/CropRecommendationEDA/edit/main/README.md]
 
+#### Feature Engineering
+The dataset contains both categorical and numeric attributes representing geographic, administrative, and yield related information. To prepare the data for modeling, features were grouped into categorical and numerical variables based on their characteristics.
+
+* **Categorical Features:**
+The following fields were treated as categorical variables because they represent geographic or administrative classifications rather than measurable numeric quantities
+    * State – Represents the U.S. state where the crop yield was recorded.
+    * Ag District – Agricultural district grouping within a state.
+    * County – County level geographic identifier.
+
+* **Numeric Features:**
+The following variables were treated as numerical features because they represent quantitative values or encoded identifiers
+    * Year – Indicates the year of the agricultural observation and allows the model to capture trends in crop productivity.
+    * State ANSI – Numeric code representing the state. 
+    * Ag District Code – Numeric identifier for the agricultural district.
+    * County ANSI – Numeric identifier for the county.
+    * county_missing_flag – Binary indicator identifying records where the county code was originally missing and replaced with a placeholder.
+    * std_yield – Standardized crop yield measured in pounds per acre, representing productivity of the crop.
+
+* **Target Variable:**
+New target variable is constructed for following reasons
+    * To create a more precise prediction target, a new variable called target_crop was engineered by combining the Commodity and Sub_Commodity fields.
+    * This approach ensures that the model predicts both the main crop category and its specific sub-category, enabling more granular crop recommendations.
+
+* **Train/Test Split:**
+The dataset was divided into training and testing subsets to evaluate the performance of the machine learning models on unseen data.
+   * A 70%–30% split was used
+      * 70% of the data was used for training the model, allowing the algorithm to learn patterns.
+      * 30% of the data was reserved as a test dataset to objectively evaluate model performance.
+    
+### Model Evaluation:
+**Baseline Model Evaluation**
+Baseline modeling establishes a reference point for model performance before applying more complex machine learning algorithms. It helps determine whether a predictive model is actually learning meaningful patterns from the data.
+
+To establish a reference point for model performance, two baseline models were implemented: a Dummy Classifier and a Logistic Regression classifier.
+   * The Dummy Classifier will establish a baseline that represents random or distribution-based predictions.
+   * The Logistic Regression model will provide an interpretable machine learning approach that can capture meaningful relationships in the dataset.
+   * Comparing these two models allows us to determine whether the model is learning useful patterns from the data and provides a foundation for evaluating more advanced algorithms in later stages of the project.
+
+Below are the performance metrics for Dummy Classifier and a Logistic Regression classifier.
+
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/model_comparison.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/model_comparison.jpg)
+
+* **Dummy Classifier Observations**
+   * Correctly predicts about 11–12% of samples
+   * Macro Precision / Recall / F1 is 0.04 that projects class imbalance, which means rare clases may never get predicted correctly
+   * ROC AUC is 0.5,  which means no discrimination and behaving correctly on random ranking
+
+The stratified DummyClassifier achieved an accuracy of 11.8% with macro F1 of 0.042, establishing the statistical performance floor. Any model exceeding this baseline demonstrates learned predictive signal beyond random class distribution.
+
+* **Logistic Regression Observations**
+   * Accuracy (68.6%) is substantially higher than the Dummy baseline (11.8%).
+   * Precision indicates that more than half of predicted positives are correct.
+   * Recall demonstrates moderate ability to capture actual positives, suggesting potential improvement through threshold tuning.
+   * The macro ROC AUC of 0.98 indicates strong class separability and ranking capability.
 
 ### Outline of project
 
