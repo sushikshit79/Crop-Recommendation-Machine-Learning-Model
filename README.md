@@ -102,7 +102,7 @@ The stratified DummyClassifier achieved an accuracy of 11.8% with macro F1 of 0.
 
 ### **Evaluate Multiple Classification Models with Default Behavior**
 
-To Evaluate the effectiveness of different classification approaches for crop prediction, five machine learning models were trained and tested: Logistic Regression, K-Nearest Neighbors (KNN), Decision Tree, Support Vector Classifier (SVC) and Random Forest Classifier. Each model was evaluated using metrics such as accuracy, precision, recall, F1 score, ROC AUC, training time and prediction time. This step establishes a baseline to understand how each model performs before applying hyperparameter tuning or feature engineering. 
+To evaluate the effectiveness of different classification approaches for crop prediction, five machine learning models were trained and tested: Logistic Regression, K-Nearest Neighbors (KNN), Decision Tree, Support Vector Classifier (SVC) and Random Forest Classifier. Each model was evaluated using metrics such as accuracy, precision, recall, F1 score, ROC AUC, training time and prediction time. This step establishes a baseline to understand how each model performs before applying hyperparameter tuning or feature engineering. 
 
 **Evaluate Metrics of Multiple Classification Models with Default Behavior** 
 ![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_param_def_metrics.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/crop_recom_param_def_metrics.jpg)
