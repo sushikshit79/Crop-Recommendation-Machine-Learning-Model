@@ -196,6 +196,119 @@ Feature Engineering 2 (FE2) introduced additional features to better capture geo
 ### Model Performance Progression Across Modeling Stages
 ![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/mdel_perf_stages.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/mdel_perf_stages.jpg)
 
+## Model Comparison Across Experiments (Default → HP → FE1 → FE2 → FE3)
+
+### Logistic Regression
+* Shows consistent and stable performance across all experiments.
+* Noticeable improvement with feature engineering (FE1/FE2), especially in accuracy and F1.
+* Maintains strong ROC AUC throughout, indicating good class separability.
+* Best suited as a baseline, interpretable model, but not the top performer.
+
+### K-Nearest Neighbors (KNN)
+* Weakest performer across all experiments.
+* Slight improvement with hyperparameter tuning and feature engineering, but still significantly below others.
+* High prediction time and sensitivity to feature scaling/geography.
+* Not recommended for this dataset.
+
+### Decision Tree
+* Top performer across all experiments, especially after defining Hyperparameters and Feature Engineering.
+* Achieves highest accuracy, precision, recall, F1 and ROC AUC consistently with Hyperparameters and Feature Engineering.
+* Very fast training and prediction times.
+* Risk of overfitting exists but controlled with tuning (max_depth, splits).
+
+### Support Vector Classifier (SVC)
+* Moderate performance across all stages.
+* Benefits from feature engineering but still lags behind tree-based models.
+* Higher training and prediction time.
+* ROC-AUC was not computed for the SVC model because probability estimates were not enabled, and enabling them would significantly increase computational cost.
+* Not optimal overall.
+
+### Random Forest
+* Consistently strong and reliable performer.
+* Significant improvement after Feature Engineering (FE1/FE2).
+* High ROC AUC and balanced precision–recall, indicating robustness.
+* Slightly slower than Decision Tree but more stable (less overfitting).
+
+### Real World Execution
+
+Based on the comparative evaluation across all models and experiments, both the Decision Tree classifier and Random Forest Classifier with Hyperparameter Tuning and Feature Engineering 1 (HP_FE1) are most effective models. These models consistently achieved high accuracy, precision, recall, and F1 score, indicating strong predictive performance and balanced classification across all target classes. Additionally, they also delivered a high ROC AUC score, demonstrating excellent capability in distinguishing between crop classes.
+
+Since both Decision Tree and Random Forest demonstrated strong and comparable performance across evaluation metrics, it is important to assess their behavior in real-world scenarios. Running sample-based predictions allows us to evaluate how each model performs in practical use, particularly in terms of recommendation quality and probability distribution. These results can then be used to select the most suitable model for deployment.
+
+**Comparison of Predictions - Decision Tree vs Random Forest**
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/Best_Model_Pred_Comp.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/Best_Model_Pred_Comp.jpg)
+
+#### Overall Conclusion – Decision Tree vs Random Forest
+* The Decision Tree model produces highly confident but rigid predictions, often assigning extreme probabilities (0 or 1), which leads to limited diversity in recommendations beyond the top rank.
+* In contrast, the Random Forest model generates more balanced probability distributions, resulting in more meaningful and diverse Top-3 crop recommendations.
+* Across multiple locations, both models generally agree on the top-ranked crop, indicating consistency in identifying dominant regional crops.
+* Random Forest provides better differentiation in lower-ranked predictions, capturing alternative crop options that the Decision Tree fails to represent.
+
+Overall, while Decision Tree is simpler and highly interpretable, Random Forest is better suited for recommendation systems, as it offers improved generalization and more reliable probability-based rankings.
+
+## Deployment Report
+
+### Overview
+The deployment focuses on operationalizing the trained machine learning model to provide real-time crop recommendations based on user inputs. The final solution is designed to accept State and County as inputs and return the top 3 recommended crops with probabilities, enabling practical use by farmers, agricultural stakeholders and lenders
+
+### Final Model Selection
+After evaluating multiple models across different feature engineering strategies, Random Forest was selected as the final model for deployment. While Decision Tree showed comparable accuracy, Random Forest demonstrated better generalization and produced more reliable and diverse probability-based recommendations during real-world sample testing.
+
+### System Architectural Components
+* Trained Random Forest model (**best_rf_model**)
+* Prediction function for Top-3 recommendations (predict_top3_from_location)
+
+#### Input and Output Design
+
+* **Inputs:**
+    * State (Example: TENNESSEE)
+    * County (Example: LINCOLN)
+
+* **Output:**
+    * Top 3 recommended crops
+    * Associated probability scores
+
+**Example**
+Below with sample code and results
+
+state = "TENNESSEE"
+county = "LINCOLN"
+preds = predict_top3_from_location(best_rf_model, state, county)
+preds_df = pd.DataFrame(preds)
+preds_disp = preds_df.style.set_table_styles([
+    {'selector': '', 'props': [('border', '1px solid black')]},
+    {'selector': 'td', 'props': [('border', '1px solid black')]},
+    {'selector': 'th', 'props': [('border', '1px solid black')]}
+])
+preds_disp
+
+![https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/sam_op.jpg](https://github.com/sushikshit79/Crop-Recommendation-Machine-Learning-Model/blob/main/images/sam_op.jpg)
+
+#### Deployment Approach:
+* **The model can be deployed using the following approaches**
+    * **UI Integration and API-Based Deployment:** Deploy the model as an API  using frameworks like FastAPI and integrate it with a web or mobile interface to enable farmers and stakeholders to access crop recommendations in real time.
+    * **Batch Deployment:** Generate recommendations for multiple regions periodically.
+
+#### Limitations
+* Predictions are based on geographical features and yield only and deosn't include real-time environmental factors like weather and soil conditions
+* Model performance may vary on sparse data
+
+#### Future Enhancements
+* Integrate weather and soil data for improved predictions
+* Build a user friendly dashboard
+* Add explainability features to improve transparency
+
+### Summary
+The deployed solution provides a practical crop recommendation system that balances model performance with real-world usability, enabling data-driven agricultural decision-making.
+
+## Executive Summary
+
+This project presents a machine learning crop prediction and recommendation system designed to support farmers, agricultural stakeholders, and lenders in making informed data-driven decisions. By leveraging historical agricultural data at the state and county level, multiple models including Logistic Regression, KNN, Decision Tree, SVC and Random Forest were developed and evaluated using various feature engineering strategies to identify the most effective approach.
+
+Introducing only State and County as input features resulted in low model accuracy, highlighting the limited predictive power of geographic data alone. Incorporating yield-based features significantly improved accuracy, but also introduced practical constraints. While the Decision Tree model achieved slightly higher accuracy, it produced overly confident and rigid predictions with limited variability in alternative recommendations. In contrast, Random Forest provided better differentiation across lower-ranked predictions, offering more diverse and realistic crop options. Based on comparative analysis and real-world sample testing, Random Forest was selected as the preferred model as it strikes a better balance between predictive performance and practical usability for crop recommendation.
+
+The final system enables users to input a state and county and receive ranked crop recommendations, supporting better crop selection, reducing agricultural risk and aiding lenders in risk assessment. Overall, the project highlights the importance of feature design, model selection and aligning machine learning solutions with real-world usability.
+
 ### Outline of project
 
 
